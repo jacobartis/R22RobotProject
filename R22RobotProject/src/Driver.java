@@ -31,13 +31,13 @@ public class Driver {
 		
 		//Behaviors
 		Behavior turning = new Turning(pilot,distanceForward);
-//		Behavior emergencyStop = new EmergencyStop();
-//		Behavior batteryLevel = new BatteryLevel();
-//		Behavior stopAtWall = new StopAtWall();
-//		Behavior movingForward = new MovingForward();
+		Behavior emergencyStop = new EmergencyStop(pilot);
+		Behavior batteryLevel = new BatteryLevel(pilot);
+		Behavior stopAtWall = new StopAtWall(pilot,distanceForward);
+		Behavior movingForward = new MovingForward(pilot);
 		
 		
-		Arbitrator ab = new Arbitrator(new Behavior[] {turning});
+		Arbitrator ab = new Arbitrator(new Behavior[] {movingForward,turning,stopAtWall,emergencyStop,batteryLevel});
 		ab.go();
 		us.close();
 	}
