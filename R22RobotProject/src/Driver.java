@@ -54,9 +54,11 @@ public class Driver {
 	public static void welcome() {
 		LCD.drawString("Maze Solver", 0, 0);
 		LCD.drawString("Authors:", 0, 1);
-		LCD.drawString("Rayan Miah, Jacob Artis", 1, 1);
-		LCD.drawString("Dylan Cheema, Mandeep Sehdev", 1, 2);
-		LCD.drawString("Version: 1.0", 0, 3);
+		LCD.drawString("Rayan Miah", 0, 2);
+		LCD.drawString("Jacob Artis", 0, 3);
+		LCD.drawString("Mandeep Sehdev", 0, 4);
+		LCD.drawString("Dylan Cheema", 0, 5);
+		LCD.drawString("Version: 1.0", 0, 6);
 		Button.ENTER.waitForPressAndRelease();
 	}
 }
