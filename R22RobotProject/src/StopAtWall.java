@@ -1,5 +1,3 @@
-import lejos.hardware.port.SensorPort;
-import lejos.hardware.sensor.EV3UltrasonicSensor;
 import lejos.robotics.SampleProvider;
 import lejos.robotics.navigation.MovePilot;
 import lejos.robotics.subsumption.Behavior;
@@ -8,13 +6,12 @@ public class StopAtWall implements Behavior {
 	
     //private boolean suppressBehaviour = false; // might not need this
     private MovePilot pilot;
-        
+    private SampleProvider sp;
     float[] distance = new float[1];
-    EV3UltrasonicSensor us = new EV3UltrasonicSensor(SensorPort.S1);
-    SampleProvider sp = us.getDistanceMode();
     
-    StopAtWall(MovePilot p) {
+    StopAtWall(MovePilot p, SampleProvider us) {
     	this.pilot = p;
+    	this.sp = us;
     }
     
     public boolean takeControl() {
