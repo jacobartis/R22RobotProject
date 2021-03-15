@@ -5,7 +5,6 @@ import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
 import lejos.hardware.port.SensorPort;
-import lejos.hardware.sensor.NXTLightSensor;
 import lejos.hardware.sensor.NXTUltrasonicSensor;
 import lejos.robotics.SampleProvider;
 import lejos.robotics.chassis.Chassis;
@@ -28,7 +27,9 @@ public class Driver {
 		
 		pilot.setLinearSpeed(70);
 		NXTUltrasonicSensor us = new NXTUltrasonicSensor(SensorPort.S2);
+		NXTUltrasonicSensor ul = new NXTUltrasonicSensor(SensorPort.S3);
 		SampleProvider distanceForward = us.getDistanceMode();
+		SampleProvider distanceSide = ul.getDistanceMode();
 		
 		//Behaviors
 		Behavior turning = new Turning(pilot,distanceForward);
