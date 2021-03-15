@@ -30,7 +30,7 @@ public class Calibrate{
 		LCD.drawString("The light value of the end goal is: "+level[GOAL],0,1);
 		LCD.drawString("The light value of the floor is: "+level[FLOOR],0,2);
 			
-		LCD.drawString("Calabration complete",0,3);
+		LCD.drawString("Calibration complete",0,3);
 		LCD.clear();
 	}
 	public float getGoal() {
