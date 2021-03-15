@@ -5,6 +5,7 @@ import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
 import lejos.hardware.port.SensorPort;
+import lejos.hardware.sensor.NXTLightSensor;
 import lejos.hardware.sensor.NXTUltrasonicSensor;
 import lejos.robotics.SampleProvider;
 import lejos.robotics.chassis.Chassis;
@@ -35,7 +36,6 @@ public class Driver {
 		Behavior batteryLevel = new BatteryLevel(pilot);
 		Behavior stopAtWall = new StopAtWall(pilot,distanceForward);
 		Behavior movingForward = new MovingForward(pilot);
-		
 		
 		Arbitrator ab = new Arbitrator(new Behavior[] {movingForward,turning,stopAtWall,emergencyStop,batteryLevel});
 		ab.go();
