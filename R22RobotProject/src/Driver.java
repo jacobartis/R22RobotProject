@@ -37,10 +37,13 @@ public class Driver {
 		Behavior batteryLevel = new BatteryLevel(pilot);
 		Behavior stopAtWall = new StopAtWall(pilot,distanceForward);
 		Behavior movingForward = new MovingForward(pilot);
+		Behavior followLeft = new FollowWallLeft(pilot,distanceForward);
+		Behavior followRight = new FollowWallRight(pilot,distanceSide);
 		
-		Arbitrator ab = new Arbitrator(new Behavior[] {movingForward,turning,stopAtWall,emergencyStop,batteryLevel});
+		Arbitrator ab = new Arbitrator(new Behavior[] {movingForward,turning,stopAtWall,followLeft,followRight,emergencyStop,batteryLevel});
 		ab.go();
 		us.close();
+		ul.close();
 	}
 	
 	public static MovePilot getPilot(Port left, Port right, float diam, float offset) {
