@@ -60,5 +60,6 @@ public class Driver {
 		LCD.drawString("Dylan Cheema", 0, 5);
 		LCD.drawString("Version: 1.0", 0, 6);
 		Button.ENTER.waitForPressAndRelease();
+		LCD.clear();
 	}
 }
