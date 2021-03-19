@@ -32,7 +32,6 @@ public class Driver {
 		SampleProvider distanceSide = ul.getDistanceMode();
 		
 		//Behaviors
-		Behavior turning = new Turning(pilot,distanceForward);
 		Behavior emergencyStop = new EmergencyStop(pilot);
 		Behavior batteryLevel = new BatteryLevel(pilot);
 		Behavior stopAtWall = new StopAtWall(pilot,distanceForward);
@@ -40,7 +39,7 @@ public class Driver {
 		Behavior followLeft = new FollowWallLeft(pilot,distanceForward);
 		Behavior followRight = new FollowWallRight(pilot,distanceSide);
 		
-		Arbitrator ab = new Arbitrator(new Behavior[] {movingForward,turning,stopAtWall,followLeft,followRight,emergencyStop,batteryLevel});
+		Arbitrator ab = new Arbitrator(new Behavior[] {movingForward,stopAtWall,followLeft,followRight,emergencyStop,batteryLevel});
 		ab.go();
 		us.close();
 		ul.close();
