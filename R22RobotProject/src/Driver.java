@@ -34,12 +34,14 @@ public class Driver {
 		//Behaviors
 		Behavior emergencyStop = new EmergencyStop(pilot);
 		Behavior batteryLevel = new BatteryLevel(pilot);
-		Behavior stopAtWall = new StopAtWall(pilot,distanceForward);
+		//Behavior stopAtWall = new StopAtWall(pilot,distanceForward);
 		Behavior movingForward = new MovingForward(pilot);
 		Behavior followLeft = new FollowWallLeft(pilot,distanceForward);
 		Behavior followRight = new FollowWallRight(pilot,distanceSide);
+		Behavior finish = new Finish(pilot);
 		
-		Arbitrator ab = new Arbitrator(new Behavior[] {movingForward,stopAtWall,followLeft,followRight,emergencyStop,batteryLevel});
+		//														stopAtWall
+		Arbitrator ab = new Arbitrator(new Behavior[] {movingForward,followLeft,followRight,finish,emergencyStop,batteryLevel});
 		ab.go();
 		us.close();
 		ul.close();
