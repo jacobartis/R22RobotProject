@@ -19,10 +19,11 @@ public class MovingForward implements Behavior {
     }
     
     public void action() {
-    	pilot.forward();
-    	
-    	if (suppressBehaviour) {
-    		pilot.stop();
+    	if (!pilot.isMoving()) {
+    		pilot.forward();
+    		if (suppressBehaviour) {
+    			pilot.stop();
+    		}
     	}
     }
 }
