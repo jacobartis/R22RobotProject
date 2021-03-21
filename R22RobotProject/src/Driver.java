@@ -5,6 +5,7 @@ import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
 import lejos.hardware.port.SensorPort;
+import lejos.hardware.sensor.EV3IRSensor;
 import lejos.hardware.sensor.NXTUltrasonicSensor;
 import lejos.robotics.SampleProvider;
 import lejos.robotics.chassis.Chassis;
@@ -26,25 +27,27 @@ public class Driver {
 		welcome();
 		
 		pilot.setLinearSpeed(70);
-		NXTUltrasonicSensor us = new NXTUltrasonicSensor(SensorPort.S2);
-		NXTUltrasonicSensor ul = new NXTUltrasonicSensor(SensorPort.S3);
-		SampleProvider distanceForward = us.getDistanceMode();
-		SampleProvider distanceSide = ul.getDistanceMode();
+		//NXTUltrasonicSensor us = new NXTUltrasonicSensor(SensorPort.S2);
+		//EV3IRSensor ul = new EV3IRSensor(SensorPort.S3);
+		//SampleProvider distanceForward = us.getDistanceMode();
+		//SampleProvider distanceSide = ul.getDistanceMode();
+		//us.enable();
 		
 		//Behaviors
 		Behavior emergencyStop = new EmergencyStop(pilot);
 		Behavior batteryLevel = new BatteryLevel(pilot);
 		//Behavior stopAtWall = new StopAtWall(pilot,distanceForward);
 		Behavior movingForward = new MovingForward(pilot);
-		Behavior followLeft = new FollowWallLeft(pilot,distanceForward);
-		Behavior followRight = new FollowWallRight(pilot,distanceSide);
+		Behavior followLeft = new FollowWallLeft(pilot);
+		//Behavior followRight = new FollowWallRight(pilot,distanceSide);
 		Behavior finish = new Finish(pilot);
 		
 		//														stopAtWall
-		Arbitrator ab = new Arbitrator(new Behavior[] {movingForward,followLeft,followRight,finish,emergencyStop,batteryLevel});
+		//,finish,emergencyStop,batteryLevel
+		Arbitrator ab = new Arbitrator(new Behavior[] {movingForward,followLeft});
 		ab.go();
-		us.close();
-		ul.close();
+		//us.close();
+		//ul.close();
 	}
 	
 	public static MovePilot getPilot(Port left, Port right, float diam, float offset) {
