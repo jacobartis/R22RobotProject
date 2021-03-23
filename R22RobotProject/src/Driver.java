@@ -5,6 +5,7 @@ import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
 import lejos.hardware.port.SensorPort;
+import lejos.hardware.sensor.EV3UltrasonicSensor;
 import lejos.hardware.sensor.NXTUltrasonicSensor;
 import lejos.robotics.SampleProvider;
 import lejos.robotics.chassis.Chassis;
@@ -26,8 +27,8 @@ public class Driver {
 		welcome();
 		
 		pilot.setLinearSpeed(70);
-		NXTUltrasonicSensor us = new NXTUltrasonicSensor(SensorPort.S2);
-		NXTUltrasonicSensor ul = new NXTUltrasonicSensor(SensorPort.S3);
+		EV3UltrasonicSensor us = new EV3UltrasonicSensor(SensorPort.S2);
+		EV3UltrasonicSensor ul = new EV3UltrasonicSensor(SensorPort.S3);
 		SampleProvider distanceForward = us.getDistanceMode();
 		SampleProvider distanceSide = ul.getDistanceMode();
 		
@@ -43,8 +44,8 @@ public class Driver {
 		//														stopAtWall
 		Arbitrator ab = new Arbitrator(new Behavior[] {movingForward,followLeft,followRight,finish,emergencyStop,batteryLevel});
 		ab.go();
-		us.close();
-		ul.close();
+//		us.close();
+//		ul.close();
 	}
 	
 	public static MovePilot getPilot(Port left, Port right, float diam, float offset) {
@@ -65,5 +66,6 @@ public class Driver {
 		LCD.drawString("Dylan Cheema", 0, 5);
 		LCD.drawString("Version: 1.0", 0, 6);
 		Button.ENTER.waitForPressAndRelease();
+		LCD.clear();
 	}
 }
