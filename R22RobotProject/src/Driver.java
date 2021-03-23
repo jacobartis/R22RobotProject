@@ -27,11 +27,10 @@ public class Driver {
 		welcome();
 		
 		pilot.setLinearSpeed(70);
-		//NXTUltrasonicSensor us = new NXTUltrasonicSensor(SensorPort.S2);
-		//EV3IRSensor ul = new EV3IRSensor(SensorPort.S3);
-		//SampleProvider distanceForward = us.getDistanceMode();
-		//SampleProvider distanceSide = ul.getDistanceMode();
-		//us.enable();
+		NXTUltrasonicSensor us = new NXTUltrasonicSensor(SensorPort.S2);
+		EV3IRSensor ul = new EV3IRSensor(SensorPort.S3);
+		SampleProvider distanceForward = us.getDistanceMode();
+		SampleProvider distanceSide = ul.getDistanceMode();
 		
 		//Behaviors
 		Behavior emergencyStop = new EmergencyStop(pilot);
@@ -43,11 +42,11 @@ public class Driver {
 		Behavior finish = new Finish(pilot);
 		
 		//														stopAtWall
-		//,finish,emergencyStop,batteryLevel
-		Arbitrator ab = new Arbitrator(new Behavior[] {movingForward,followLeft});
+		//
+		Arbitrator ab = new Arbitrator(new Behavior[] {movingForward,followLeft,finish,emergencyStop,batteryLevel});
 		ab.go();
-		//us.close();
-		//ul.close();
+		us.close();
+		ul.close();
 	}
 	
 	public static MovePilot getPilot(Port left, Port right, float diam, float offset) {

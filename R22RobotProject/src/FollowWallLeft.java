@@ -7,8 +7,8 @@ import lejos.robotics.subsumption.Behavior;
 public class FollowWallLeft implements Behavior {
 	
 	private MovePilot pilot;
-	private NXTUltrasonicSensor us = new NXTUltrasonicSensor(SensorPort.S2);
-	private SampleProvider sp = us.getDistanceMode();
+//	private NXTUltrasonicSensor us = new NXTUltrasonicSensor(SensorPort.S2);
+//	private SampleProvider sp = us.getDistanceMode();
 	float[] distance = new float[1];
 	
 	FollowWallLeft(MovePilot p) {
