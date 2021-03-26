@@ -1,3 +1,4 @@
+import lejos.hardware.lcd.LCD;
 import lejos.robotics.navigation.MovePilot;
 import lejos.robotics.subsumption.Behavior;
 
@@ -8,6 +9,8 @@ public class MovingForward implements Behavior {
     
     MovingForward(MovePilot p) {
     	this.pilot = p;
+		LCD.clear();
+		LCD.drawString("MF made",0,2);
     }
     
     public boolean takeControl() {
@@ -15,15 +18,17 @@ public class MovingForward implements Behavior {
     }
     
     public void suppress() {
-    	suppressBehaviour = true;
+    	pilot.stop();
     }
     
     public void action() {
-    	if (!pilot.isMoving()) {
-    		pilot.forward();
-    		if (suppressBehaviour) {
-    			pilot.stop();
+//    	while (!suppressBehaviour) {
+    		if (!pilot.isMoving()) {
+    			pilot.forward();
     		}
-    	}
+//    	}
+//		if (suppressBehaviour) {
+//			pilot.stop();
+//		}
     }
 }

@@ -1,5 +1,5 @@
 
-public class SideState {
+public class FinishState {
 	
 	private boolean State;
 	

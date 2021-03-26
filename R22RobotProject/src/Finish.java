@@ -22,6 +22,8 @@ public class Finish implements Behavior{
 	
 	public boolean takeControl() {
 		light.fetchSample(level, 0);
+		LCD.clear();
+		LCD.drawInt((int) level[0],0,4);
 		return(level[0] == goal);
 	}
 	
@@ -29,6 +31,7 @@ public class Finish implements Behavior{
 	
 	public void action() {
 		pilot.stop();
+		System.exit(0);
 	}
 	
 	public void calibrate() {

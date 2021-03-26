@@ -19,14 +19,13 @@ public class Driver {
 
 	final static float WHEEL_DIAMETER = 51;
 	final static float AXLE_LENGTH = 44;
-
 	public static void main(String[] args) {
 		
 		MovePilot pilot = getPilot(MotorPort.A, MotorPort.B, WHEEL_DIAMETER, AXLE_LENGTH);
-		
 		welcome();
 		
 		pilot.setLinearSpeed(70);
+
 		EV3UltrasonicSensor us = new EV3UltrasonicSensor(SensorPort.S2);
 		EV3UltrasonicSensor ul = new EV3UltrasonicSensor(SensorPort.S3);
 		SampleProvider distanceForward = us.getDistanceMode();
@@ -58,6 +57,7 @@ public class Driver {
 	}
 	
 	public static void welcome() {
+		
 		LCD.drawString("Maze Solver", 0, 0);
 		LCD.drawString("Authors:", 0, 1);
 		LCD.drawString("Rayan Miah", 0, 2);

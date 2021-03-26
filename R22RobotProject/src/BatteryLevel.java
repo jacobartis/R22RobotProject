@@ -44,6 +44,8 @@ public class BatteryLevel implements Behavior {
 	//displays on screen that the battery is low
 	//stops pilot when battery is too low
 	public void action() {
+		LCD.clear();
+		LCD.drawString("BL action",0,2);
 		LCD.drawString("Battery Low!", 1, 1);
 		Sound.beep();
 		while (suppressBehaviour) {
