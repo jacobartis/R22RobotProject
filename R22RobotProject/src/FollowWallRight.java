@@ -1,4 +1,3 @@
-import lejos.hardware.lcd.LCD;
 import lejos.robotics.SampleProvider;
 import lejos.robotics.navigation.MovePilot;
 import lejos.robotics.subsumption.Behavior;
@@ -12,7 +11,6 @@ public class FollowWallRight implements Behavior {
 	FollowWallRight(MovePilot p, SampleProvider s) {
 		this.pilot = p;
 		this.sp = s;
-		LCD.clear();
 	}
 	
 	public boolean takeControl() {

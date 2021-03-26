@@ -6,7 +6,6 @@ import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
-import lejos.hardware.sensor.NXTUltrasonicSensor;
 import lejos.robotics.SampleProvider;
 import lejos.robotics.chassis.Chassis;
 import lejos.robotics.chassis.Wheel;
@@ -34,17 +33,16 @@ public class Driver {
 		//Behaviors
 		Behavior emergencyStop = new EmergencyStop(pilot);
 		Behavior batteryLevel = new BatteryLevel(pilot);
-		//Behavior stopAtWall = new StopAtWall(pilot,distanceForward);
 		Behavior movingForward = new MovingForward(pilot);
 		Behavior followLeft = new FollowWallLeft(pilot,distanceForward);
 		Behavior followRight = new FollowWallRight(pilot,distanceSide);
 		Behavior finish = new Finish(pilot);
 		
-		//														stopAtWall
+		//												in order of increasing priority
 		Arbitrator ab = new Arbitrator(new Behavior[] {movingForward,followLeft,followRight,finish,emergencyStop,batteryLevel});
 		ab.go();
-//		us.close();
-//		ul.close();
+		us.close();
+		ul.close();
 	}
 	
 	public static MovePilot getPilot(Port left, Port right, float diam, float offset) {

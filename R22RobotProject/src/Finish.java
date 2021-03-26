@@ -20,7 +20,7 @@ public class Finish implements Behavior{
 		calibrate();
 	}
 	
-	public boolean takeControl() {
+	public boolean takeControl() { //checks if the end goal has been reached
 		light.fetchSample(level, 0);
 		LCD.clear();
 		LCD.drawInt((int) level[0],0,4);
@@ -29,12 +29,12 @@ public class Finish implements Behavior{
 	
 	public void suppress() {}
 	
-	public void action() {
+	public void action() { //Exits the program if the goal is reached
 		pilot.stop();
 		System.exit(0);
 	}
 	
-	public void calibrate() {
+	public void calibrate() { //Stores a neutral and end value into their respective variables
 		LCD.drawString("Calibrating sensor",0,0);
 		LCD.drawString("Place on end goal",0,1);
 		Button.ENTER.waitForPressAndRelease();

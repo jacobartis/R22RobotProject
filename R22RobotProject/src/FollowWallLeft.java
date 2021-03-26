@@ -1,4 +1,3 @@
-import lejos.hardware.lcd.LCD;
 import lejos.robotics.SampleProvider;
 import lejos.robotics.navigation.MovePilot;
 import lejos.robotics.subsumption.Behavior;
@@ -12,8 +11,6 @@ public class FollowWallLeft implements Behavior {
 	FollowWallLeft(MovePilot p, SampleProvider s) {
 		this.pilot = p;
 		this.sp = s;
-		LCD.clear();
-		LCD.drawString("FWL made",0,2);
 	}
 	
 	public boolean takeControl() {
@@ -25,8 +22,6 @@ public class FollowWallLeft implements Behavior {
 	
 	public void action() {
 		if (!pilot.isMoving()) {
-			LCD.clear();
-			LCD.drawString("FWL action",0,2);
 			pilot.rotate(90);
 		}
 	}
