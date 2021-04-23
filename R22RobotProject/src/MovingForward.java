@@ -3,7 +3,6 @@ import lejos.robotics.subsumption.Behavior;
 
 public class MovingForward implements Behavior {
 	
-    private boolean suppressBehaviour = false;
     private MovePilot pilot;
     
     MovingForward(MovePilot p) {
@@ -15,15 +14,12 @@ public class MovingForward implements Behavior {
     }
     
     public void suppress() {
-    	suppressBehaviour = true;
+    	pilot.stop();
     }
     
-    public void action() {
+    public void action() { // only moves the robot if it isn't moving, stops the robot from jittering
     	if (!pilot.isMoving()) {
-    		pilot.forward();
-    		if (suppressBehaviour) {
-    			pilot.stop();
-    		}
+    			pilot.forward();
     	}
     }
 }

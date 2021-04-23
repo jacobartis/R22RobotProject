@@ -15,14 +15,16 @@ public class FollowWallRight implements Behavior {
 	
 	public boolean takeControl() {
 		sp.fetchSample(distance, 0);
-		return (distance[0] > 0.04);
+		return (distance[0] > 0.1);
 	}
 	
 	public void suppress() {}
 	
 	public void action() {
-		pilot.rotateRight();
-		pilot.travel(0.2);
+		if (!pilot.isMoving()) {
+			pilot.rotate(-90);
+			pilot.travel(0.2);
+		}
 	}
 	
 	

@@ -19,8 +19,7 @@ public class EmergencyStop implements Behavior {
 	}
 	
     //suppresses behaviour
-	public void suppress() {
-	}
+	public void suppress() {}
 	
     //takeControl = true when button is pressed
     //therefore stops when takeControl is true

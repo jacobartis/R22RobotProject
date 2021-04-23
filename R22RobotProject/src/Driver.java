@@ -6,7 +6,6 @@ import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
-import lejos.hardware.sensor.NXTUltrasonicSensor;
 import lejos.robotics.SampleProvider;
 import lejos.robotics.chassis.Chassis;
 import lejos.robotics.chassis.Wheel;
@@ -19,14 +18,13 @@ public class Driver {
 
 	final static float WHEEL_DIAMETER = 51;
 	final static float AXLE_LENGTH = 44;
-
 	public static void main(String[] args) {
 		
 		MovePilot pilot = getPilot(MotorPort.A, MotorPort.B, WHEEL_DIAMETER, AXLE_LENGTH);
-		
 		welcome();
 		
 		pilot.setLinearSpeed(70);
+
 		EV3UltrasonicSensor us = new EV3UltrasonicSensor(SensorPort.S2);
 		EV3UltrasonicSensor ul = new EV3UltrasonicSensor(SensorPort.S3);
 		SampleProvider distanceForward = us.getDistanceMode();
@@ -35,17 +33,16 @@ public class Driver {
 		//Behaviors
 		Behavior emergencyStop = new EmergencyStop(pilot);
 		Behavior batteryLevel = new BatteryLevel(pilot);
-		//Behavior stopAtWall = new StopAtWall(pilot,distanceForward);
 		Behavior movingForward = new MovingForward(pilot);
 		Behavior followLeft = new FollowWallLeft(pilot,distanceForward);
 		Behavior followRight = new FollowWallRight(pilot,distanceSide);
 		Behavior finish = new Finish(pilot);
 		
-		//														stopAtWall
+		//												in order of increasing priority
 		Arbitrator ab = new Arbitrator(new Behavior[] {movingForward,followLeft,followRight,finish,emergencyStop,batteryLevel});
 		ab.go();
-//		us.close();
-//		ul.close();
+		us.close();
+		ul.close();
 	}
 	
 	public static MovePilot getPilot(Port left, Port right, float diam, float offset) {
@@ -58,6 +55,7 @@ public class Driver {
 	}
 	
 	public static void welcome() {
+		
 		LCD.drawString("Maze Solver", 0, 0);
 		LCD.drawString("Authors:", 0, 1);
 		LCD.drawString("Rayan Miah", 0, 2);
